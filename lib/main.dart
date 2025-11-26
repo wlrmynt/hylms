@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'HYLMS - Hybrid Learning Management System',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -152,30 +153,37 @@ class _MainNavigationState extends State<MainNavigation> {
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard),
+            icon: Icon(Icons.dashboard, color: Colors.blue),
+            activeIcon: Icon(Icons.dashboard, color: Colors.blue),
             label: 'Dashboard',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.book),
+            icon: Icon(Icons.book, color: Colors.blue),
+            activeIcon: Icon(Icons.book, color: Colors.blue),
             label: 'Kursus Mandiri',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.school, color: Colors.blue),
+            activeIcon: Icon(Icons.school, color: Colors.blue),
             label: 'Kelas Terstruktur',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
+            icon: Icon(Icons.assignment, color: Colors.blue),
+            activeIcon: Icon(Icons.assignment, color: Colors.blue),
             label: 'Tugas',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.forum),
+            icon: Icon(Icons.forum, color: Colors.blue),
+            activeIcon: Icon(Icons.forum, color: Colors.blue),
             label: 'Forum',
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
     );

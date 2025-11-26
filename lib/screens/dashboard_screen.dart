@@ -20,43 +20,7 @@ class DashboardScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Menu Utama
-            const Text(
-              'Menu Utama',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                _buildMenuCard(
-                  context,
-                  'Kursus Mandiri',
-                  Icons.book,
-                  () => Navigator.pushNamed(context, '/kursus_mandiri'),
-                ),
-                _buildMenuCard(
-                  context,
-                  'Kelas Terstruktur',
-                  Icons.school,
-                  () => Navigator.pushNamed(context, '/kelas_terstruktur'),
-                ),
-                _buildMenuCard(
-                  context,
-                  'Tugas',
-                  Icons.assignment,
-                  () => Navigator.pushNamed(context, '/tugas'),
-                ),
-                _buildMenuCard(
-                  context,
-                  'Forum Diskusi',
-                  Icons.forum,
-                  () => Navigator.pushNamed(context, '/forum'),
-                ),
-              ],
-            ),
+            // Menu Utama section removed
             const SizedBox(height: 24),
             // Notifikasi
             const Text(
