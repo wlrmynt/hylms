@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ClassManagementScreen extends StatelessWidget {
-  const ClassManagementScreen({super.key});
+  final String? className;
+  final String? classCode;
+  const ClassManagementScreen({super.key, this.className, this.classCode});
 
   @override
   Widget build(BuildContext context) {
@@ -9,8 +11,13 @@ class ClassManagementScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Pemrograman Web'),
+          title: Text(className ?? 'Pemrograman Web'),
+          backgroundColor: const Color(0xFF4CAF50),
+          foregroundColor: Colors.white,
           bottom: const TabBar(
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.white70,
+            indicatorColor: Colors.white,
             tabs: [
               Tab(text: 'Anggota'),
               Tab(text: 'Materi'),
@@ -18,11 +25,11 @@ class ClassManagementScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            MembersTab(),
-            MaterialsTab(),
-            AnnouncementsTab(),
+            MembersTab(classCode: classCode),
+            MaterialsTab(classCode: classCode),
+            AnnouncementsTab(classCode: classCode),
           ],
         ),
       ),
@@ -31,7 +38,8 @@ class ClassManagementScreen extends StatelessWidget {
 }
 
 class MembersTab extends StatelessWidget {
-  const MembersTab({super.key});
+  final String? classCode;
+  const MembersTab({super.key, this.classCode});
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +55,19 @@ class MembersTab extends StatelessWidget {
           title: Text('Siti (Mahasiswa)'),
           subtitle: Text('siti@student.edu'),
         ),
+        ListTile(
+          leading: CircleAvatar(child: Text('B')),
+          title: Text('Budi (Mahasiswa)'),
+          subtitle: Text('budi@student.edu'),
+        ),
       ],
     );
   }
 }
 
 class MaterialsTab extends StatelessWidget {
-  const MaterialsTab({super.key});
+  final String? classCode;
+  const MaterialsTab({super.key, this.classCode});
 
   @override
   Widget build(BuildContext context) {
@@ -63,14 +77,22 @@ class MaterialsTab extends StatelessWidget {
           child: ListView(
             children: const [
               ListTile(
-                leading: Icon(Icons.video_file),
+                leading: Icon(Icons.video_file, color: Colors.blue),
                 title: Text('Video: HTML Basics'),
                 subtitle: Text('Uploaded 2 days ago'),
+                trailing: Icon(Icons.download),
               ),
               ListTile(
-                leading: Icon(Icons.picture_as_pdf),
+                leading: Icon(Icons.picture_as_pdf, color: Colors.red),
                 title: Text('Slides: CSS Introduction'),
                 subtitle: Text('Uploaded 1 week ago'),
+                trailing: Icon(Icons.download),
+              ),
+              ListTile(
+                leading: Icon(Icons.quiz, color: Colors.green),
+                title: Text('Kuis: JavaScript Fundamentals'),
+                subtitle: Text('Uploaded 3 days ago'),
+                trailing: Icon(Icons.play_arrow),
               ),
             ],
           ),
@@ -79,7 +101,9 @@ class MaterialsTab extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: ElevatedButton.icon(
             onPressed: () {
-              // Upload material
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Upload materi berhasil')),
+              );
             },
             icon: const Icon(Icons.upload),
             label: const Text('Upload Materi'),
@@ -91,7 +115,8 @@ class MaterialsTab extends StatelessWidget {
 }
 
 class AnnouncementsTab extends StatelessWidget {
-  const AnnouncementsTab({super.key});
+  final String? classCode;
+  const AnnouncementsTab({super.key, this.classCode});
 
   @override
   Widget build(BuildContext context) {
@@ -115,6 +140,21 @@ class AnnouncementsTab extends StatelessWidget {
                   ),
                 ),
               ),
+              Card(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Reminder: Tugas 2', style: TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(height: 8),
+                      Text('Deadline tugas 2 diperpanjang hingga 25 November 2023.'),
+                      SizedBox(height: 8),
+                      Text('Dr. Ahmad • 3 Nov 2023', style: TextStyle(color: Colors.grey)),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -122,7 +162,9 @@ class AnnouncementsTab extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: ElevatedButton.icon(
             onPressed: () {
-              // Add announcement
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Pengumuman berhasil ditambahkan')),
+              );
             },
             icon: const Icon(Icons.add),
             label: const Text('Tambah Pengumuman'),
