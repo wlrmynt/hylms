@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -87,11 +86,12 @@ class _LoginScreenState extends State<LoginScreen>
         child: SafeArea(
           child: FadeTransition(
             opacity: _fadeAnimation,
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // Animated Logo Section
                   SlideTransition(
@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   shape: BoxShape.circle,
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
+                                      color: Colors.black.withValues(alpha: 0.1),
                                       blurRadius: 20,
                                       offset: const Offset(0, 10),
                                     ),
@@ -155,11 +155,11 @@ class _LoginScreenState extends State<LoginScreen>
                     child: Container(
                       padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.95),
+                        color: Colors.white.withValues(alpha: 0.95),
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: Colors.black.withValues(alpha: 0.1),
                             blurRadius: 30,
                             offset: const Offset(0, 15),
                           ),
@@ -357,6 +357,7 @@ class _LoginScreenState extends State<LoginScreen>
                   ),
                 ],
               ),
+              ),
             ),
           ),
         ),
@@ -364,16 +365,22 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 
-  void _login() {
+  void _login() async {
     setState(() {
       _isLoading = true;
     });
+    
     // Simulate login
-    Future.delayed(const Duration(seconds: 2), () {
-      setState(() {
-        _isLoading = false;
-      });
-      Navigator.pushReplacementNamed(context, '/dashboard');
+    await Future.delayed(const Duration(seconds: 2));
+    
+    if (!mounted) return;
+    
+    setState(() {
+      _isLoading = false;
     });
+    
+    if (mounted) {
+      Navigator.pushReplacementNamed(context, '/dashboard');
+    }
   }
 }

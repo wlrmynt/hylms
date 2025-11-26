@@ -72,8 +72,13 @@ class _MainNavigationState extends State<MainNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const Icon(Icons.school, color: Colors.white, size: 28),
         title: const Text('HYLMS'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () => Navigator.pushNamed(context, '/profile'),
+          ),
           IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () => Navigator.pushNamed(context, '/notifications'),
@@ -157,32 +162,32 @@ class _MainNavigationState extends State<MainNavigation> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard, color: Colors.blue),
-            activeIcon: Icon(Icons.dashboard, color: Colors.blue),
+            activeIcon: Icon(Icons.dashboard, color: Colors.purple),
             label: 'Dashboard',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book, color: Colors.blue),
-            activeIcon: Icon(Icons.book, color: Colors.blue),
+            activeIcon: Icon(Icons.book, color: Colors.purple),
             label: 'Kursus Mandiri',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school, color: Colors.blue),
-            activeIcon: Icon(Icons.school, color: Colors.blue),
+            activeIcon: Icon(Icons.school, color: Colors.purple),
             label: 'Kelas Terstruktur',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment, color: Colors.blue),
-            activeIcon: Icon(Icons.assignment, color: Colors.blue),
+            activeIcon: Icon(Icons.assignment, color: Colors.purple),
             label: 'Tugas',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.forum, color: Colors.blue),
-            activeIcon: Icon(Icons.forum, color: Colors.blue),
+            activeIcon: Icon(Icons.forum, color: Colors.purple),
             label: 'Forum',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.purple,
         unselectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),

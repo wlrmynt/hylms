@@ -18,15 +18,6 @@ class DashboardScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dashboard'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.person),
-            onPressed: () => Navigator.pushNamed(context, '/profile'),
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -47,7 +38,7 @@ class DashboardScreen extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Colors.purple.withOpacity(0.1),
+                    color: Colors.purple.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Text(
@@ -80,13 +71,25 @@ class DashboardScreen extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildStatCard('Progres Kursus', '75%', Colors.blue),
-                _buildStatCard('Waktu Belajar', '120h', Colors.green),
-                _buildStatCard('Skor Rata-rata', '85%', Colors.orange),
-              ],
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: _buildStatCard('Progres Kursus', '75%', Colors.blue),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _buildStatCard('Waktu Belajar', '120h', Colors.green),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _buildStatCard('Skor Rata-rata', '85%', Colors.orange),
+                    ),
+                  ],
+                );
+              },
             ),
           ],
         ),
@@ -108,7 +111,7 @@ class DashboardScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            color: Colors.purple.withOpacity(0.3),
+            color: Colors.purple.withValues(alpha: 0.3),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -139,7 +142,7 @@ class DashboardScreen extends StatelessWidget {
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(
@@ -166,7 +169,7 @@ class DashboardScreen extends StatelessWidget {
                       Text(
                         aiReason,
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha: 0.8),
                           fontSize: 12,
                         ),
                       ),
@@ -176,7 +179,7 @@ class DashboardScreen extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
+                              color: Colors.white.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
@@ -192,7 +195,7 @@ class DashboardScreen extends StatelessWidget {
                           Text(
                             '${course.durationHours} jam',
                             style: TextStyle(
-                              color: Colors.white.withOpacity(0.8),
+                              color: Colors.white.withValues(alpha: 0.8),
                               fontSize: 10,
                             ),
                           ),
@@ -222,7 +225,7 @@ class DashboardScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -237,7 +240,7 @@ class DashboardScreen extends StatelessWidget {
                     const SizedBox(height: 8),
                     Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white.withValues(alpha: 0.8),
                       size: 16,
                     ),
                   ],
