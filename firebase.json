@@ -1,0 +1,1 @@
+{ "flutter": { "platforms": { "android": { "default": { "projectId": "hylms", "fileOutput": "android/app/google-services.json" } }, "dart": { "lib/firebase_options.dart": { "projectId": "hylms", "configurations": { "android": "hylms", "ios": "hylms", "macos": "hylms", "web": "hylms", "windows": "hylms" } } } } } }

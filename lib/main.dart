@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'firebase_options.dart';
+import 'services/firebase_auth_service.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/register_screen.dart';
 import 'screens/dashboard_screen.dart';
@@ -11,7 +15,41 @@ import 'screens/progress_screen.dart';
 import 'screens/certificate_screen.dart';
 import 'screens/profile_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  try {
+    print('=== FIREBASE INITIALIZATION START ===');
+    print('Platform: ${DefaultFirebaseOptions.currentPlatform}');
+    
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    print('Firebase app initialized successfully');
+    
+    // Get Firebase app details
+    final app = Firebase.app();
+    print('Firebase app name: ${app.name}');
+    print('Firebase project ID: ${app.options.projectId}');
+    print('Firebase API key: ${app.options.apiKey}');
+    print('Firebase auth domain: ${app.options.authDomain}');
+    
+    // Check current user
+    final currentUser = FirebaseAuth.instance.currentUser;
+    print('Current user: ${currentUser?.email ?? 'None'}');
+    
+    // Test connection
+    print('Testing Firebase connection...');
+    final connectionTest = await FirebaseAuthService.checkFirebaseConnection();
+    print('Connection test result: $connectionTest');
+    
+    print('=== FIREBASE INITIALIZATION COMPLETE ===');
+    
+  } catch (e, stackTrace) {
+    print('Firebase initialization failed: $e');
+    print('Stack trace: $stackTrace');
+  }
+  
   runApp(const MyApp());
 }
 

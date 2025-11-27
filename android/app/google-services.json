@@ -1,0 +1,31 @@
+{
+    "project_info": {
+        "project_number": "742072048759",
+        "project_id": "hylms",
+        "storage_bucket": "hylms.firebasestorage.app"
+    },
+    "client": [{
+        "client_info": {
+            "mobilesdk_app_id": "1:742072048759:android:9574ffbadb5e4413203a72",
+            "android_client_info": {
+                "package_name": "com.example.hylms"
+            }
+        },
+        "oauth_client": [{
+            "client_id": "742072048759-9p77ed6k7mbin8mbpu60mcl7ja3ffn8k.apps.googleusercontent.com",
+            "client_type": 3
+        }],
+        "api_key": [{
+            "current_key": "AIzaSyCwSvLftm6YpJzPTCAWYdhjqXp8Adomm0o"
+        }],
+        "services": {
+            "appinvite_service": {
+                "other_platform_oauth_client": [{
+                    "client_id": "742072048759-9p77ed6k7mbin8mbpu60mcl7ja3ffn8k.apps.googleusercontent.com",
+                    "client_type": 3
+                }]
+            }
+        }
+    }],
+    "configuration_version": "1"
+}
